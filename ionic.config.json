@@ -1,5 +1,7 @@
 {
   "name": "academy_memoryBook",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

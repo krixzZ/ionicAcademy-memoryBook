@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Memory Book</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <img [src]="image" *ngIf="image">
+
+    <ion-fab vertical="bottom" , horizontal="end" , slot="fixed">
+        <ion-fab-button (click)="selectSource()">
+            <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>
