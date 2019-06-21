@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="start" name="close"></ion-icon>
+        Discard
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let img of images; let i = index">
+
+      <ion-fab vertical="top" horizontal="end" slor="fixed">
+        <ion-fab-button color="light" (click)="removeImage(i)">
+          <ion-icon name="trash" color="danger"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+      <img [src]="img.path" (click)="openPreview(i)">
+
+    </ion-slide>
+  </ion-slides>
+
+  <ion-button expand="block" fill="outline" (click)="selectSource()">
+    <ion-icon slot="start" name="camera"></ion-icon>
+    Add another image
+  </ion-button>
+
+</ion-content>

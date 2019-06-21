@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
+import { CapturedModalPage } from '../captured-modal/captured-modal.page';
 
 @Component({
   selector: 'app-list',
@@ -10,14 +10,12 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class ListPage implements OnInit {
 
-  image = null;
-
-  constructor(private camera: Camera, private webview: WebView, private actionSheetCtrl: ActionSheetController) { }
+  constructor(private camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
 
-  async selecSource() {
+  async selectSource() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Select Image Source',
       buttons: [{
@@ -36,7 +34,7 @@ export class ListPage implements OnInit {
         text: 'Cancel',
         role: 'cancel'
       }
-    ]
+      ]
     });
 
     actionSheet.present();
@@ -51,11 +49,21 @@ export class ListPage implements OnInit {
     };
 
     this.camera.getPicture(options).then(imagePath => {
-      this.image = this.webview.convertFileSrc(imagePath);
-      console.log('path: ', this.image);
+      this.modalCtrl.create({
+        component: CapturedModalPage,
+        componentProps: {
+          image: imagePath
+        }
+      }).then(modal => {
+        modal.present();
+
+        modal.onWillDismiss().then(data => {
+
+        });
+      });
     });
   }
 
 
 
-}
+}  

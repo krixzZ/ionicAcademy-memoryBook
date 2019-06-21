@@ -1,3 +1,5 @@
+import { ImagePreviewPageModule } from './pages/image-preview/image-preview.module';
+import { CapturedModalPageModule } from './pages/captured-modal/captured-modal.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -19,7 +21,8 @@ import { IonicStorageModule } from '@ionic/storage';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-  IonicStorageModule.forRoot()],
+    IonicStorageModule.forRoot(),
+    CapturedModalPageModule, ImagePreviewPageModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -30,4 +33,4 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
