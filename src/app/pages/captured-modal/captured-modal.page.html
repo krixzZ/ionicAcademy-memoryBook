@@ -30,4 +30,35 @@
     Add another image
   </ion-button>
 
+  <form [formGroup]="memoryForm" (ngSubmit)="saveMemory()">
+
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Date</ion-label>
+      <ion-datetime formControlName="date" displayFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Book color</ion-label>
+      <ion-row class="color-row">
+        <ion-col size="3" class="color-col" *ngFor="let col of colors" [style.background]="col"
+          [class.selected]="col == memoryForm.get('color').value" tappable (click)="setColor(col)"></ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea formControlName="text" rows="6" placeholder="Ehat happened on that date?"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!memoryForm.valid || images.length == 0">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Save Memory
+    </ion-button>
+
+  </form>
+
 </ion-content>

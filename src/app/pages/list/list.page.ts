@@ -58,7 +58,9 @@ export class ListPage implements OnInit {
         modal.present();
 
         modal.onWillDismiss().then(data => {
-
+          if (data.data && data.data['reload']) {
+            //RELOAD
+          }
         });
       });
     });
